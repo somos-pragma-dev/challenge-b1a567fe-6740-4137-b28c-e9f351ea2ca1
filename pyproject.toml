@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "fintechbank-mora-temprana"
+version = "0.1.0"
+description = "Modelo de clasificación para predicción de riesgo de mora temprana en préstamos personales"
+authors = ["Data Science Team <ds-team@fintechbank.com>"]
+readme = "README.md"
+packages = [{include = "src", from = "."}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+scikit-learn = "1.5.0"
+pandas = "2.2.2"
+numpy = "1.26.4"
+matplotlib = "3.9.0"
+seaborn = "0.13.2"
+jupyter = "1.0.0"
+statsmodels = "0.14.2"
+imbalanced-learn = "0.12.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.2.0"
+poetry = "1.8.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "8.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-q --tb=short"
+
+[tool.poetry.scripts]
+train-model = "src.models.train_model:main"
+evaluate-model = "src.models.evaluate_model:main"
